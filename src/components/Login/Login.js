@@ -25,7 +25,7 @@ const Login = () => {
             <button type="button" className="btn btn-primary btn-floating mx-1">
             <FontAwesomeIcon icon={faFacebook} /> Facebook
             </button>
-
+      {/* message */}
           </div>
 
           <div className="divider d-flex align-items-center my-4">
