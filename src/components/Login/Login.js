@@ -58,9 +58,11 @@ const Login = () => {
 
       {
         user.isSignedIn && <div>
-        <p>Welcome, {user.name}! You can login here only with google now.</p>
+          <img src={user.photo} alt=""/>
+          <br />
+        <p>Welcome, {user.name}! You can login here only with google right now.</p>
         <p>Your email: {user.email}</p>
-        <img src={user.photo} alt=""/>
+        
       </div>
       }
       <div className="col-md-9 col-lg-6 col-xl-5">
@@ -71,7 +73,7 @@ const Login = () => {
       <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form>
           <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-            <p className="lead fw-normal mb-0 me-3">Sign in with</p>
+           
             {
 
               user.isSignedIn ? <Button className="btn-warning" onClick={googleSignOut} >Sign Out from Google</Button>:
