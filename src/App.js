@@ -1,9 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
 import '../node_modules/bootstrap-4-react/dist/bootstrap-4-react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-
 import React, { createContext, useState } from "react";
 import {
   BrowserRouter as Router,
