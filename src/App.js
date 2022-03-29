@@ -16,33 +16,15 @@ import Orders from './components/Orders/Orders';
 import Admin from './components/Admin/Admin';
 import Deals from './components/Deals/Deals';
 import Login from './components/Login/Login';
+import Header from './components/Header/Header';
 
 
 export default function App() {
   return (
     <Router>
+      <Header></Header>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/orders">Orders</Link>
-            </li>
-            <li>
-              <Link to="/admin">Admin</Link>
-            </li>
-            <li>
-              <Link to="/deals">Deals</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
+          {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
         <Route path="/login">
