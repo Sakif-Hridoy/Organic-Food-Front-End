@@ -1,23 +1,27 @@
-import { Nav, Navbar } from 'bootstrap-4-react/lib/components';
+import { Button, Nav, Navbar } from 'bootstrap-4-react/lib/components';
 import { Container } from 'bootstrap-4-react/lib/components/layout';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../App';
 import './Header.css';
-
+import { useHistory } from 'react-router';
 const Header = () => {
+    const [loggedInUser,setLoggedInUser] = useContext(UserContext);
+  const history = useHistory();
+ 
     return (
         <>
     <Navbar bg="light" variant="light">
     <Container>
     <Navbar.Brand>Organic Food<Nav.Link to="/home"></Nav.Link></Navbar.Brand>
     <Nav className="me-auto">
-      <Nav.Link to="/home" href="/home">Home</Nav.Link>
-      <Nav.Link to="/orders" href="/orders">Orders</Nav.Link>
-      <Nav.Link to="/admin" href="/admin">Admin</Nav.Link>
-      <Nav.Link to="/deals" href="/deals">Deals</Nav.Link>
-      <Nav.Link to="/login" href="/login" className="btn btn-success btn-sm">Login</Nav.Link>
-      
-      <Nav.Link to="/about">Pricing</Nav.Link>
+      <Nav.Link href="/home">Home</Nav.Link>
+      <Nav.Link  href="/orders">Orders</Nav.Link>
+      <Nav.Link href="/admin">Admin</Nav.Link>
+      <Nav.Link  href="/deals">Deals</Nav.Link>
+      <Nav.Link  href="/login" className="btn btn-success btn-sm">
+      {loggedInUser.email ? loggedInUser.name || loggedInUser.displayName: "Log In"}
+      </Nav.Link>
     </Nav>
     </Container>
   </Navbar>

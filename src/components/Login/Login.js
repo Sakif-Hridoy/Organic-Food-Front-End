@@ -3,98 +3,66 @@ import './Login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { useHistory, useLocation } from 'react-router';
-import { createUserWithEmailAndPassword, handleGoogleSignIn, handleGoogleSignOut, initializeLoginFramework, signInWithEmailAndPassword } from './LoginManager';
+import { useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../App';
+import { initializeLoginFramework, handleGoogleSignIn, handleGoogleSignOut} from './loginManager';
+import { Button } from 'bootstrap-4-react/lib/components';
 
 
 const Login = () => {
   
-  const [newUser,setNewUser]=useState(false);
-
-
-  const[user,setUser]= useState({
+  const [newUser, setNewUser] = useState(false);
+  const [user, setUser] = useState({
     isSignedIn: false,
-    name:'',
-    email:'',
-    password:'',
-    photo:'',
-    error:''
+    name: '',
+    email: '',
+    password: '',
+    photo: ''
   });
+
   initializeLoginFramework();
-  const [loggedInUser,setLoggedInUser] = useContext(UserContext);
+
+  const [loggedInUser, setLoggedInUser ] = useContext(UserContext);
   const history = useHistory();
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
 
- 
-  const googleSignIn = ()=>{
-    handleGoogleSignIn()
-    .then(res=>{
+  const googleSignIn = (event) => {
+      handleGoogleSignIn()
+      .then(res => {
+        handleResponse(res, true);
+      })
+      event.preventDefault()
+  }
+
+  const googleSignOut = (event) => {
+    handleGoogleSignOut()
+    .then(res => {
       handleResponse(res, true);
     })
+    event.preventDefault()
+}
+
+  const handleResponse = (res) =>{
+    setUser(res);
+    setLoggedInUser(res);
+    
   }
 
-  const googleSignOut = ()=>{
-    handleGoogleSignOut()
-    .then(res=>{
-      handleResponse(res, false);
-    })
-  }
-
-  const handleResponse = (res,redirect)=>{
-      setUser(res);
-      setLoggedInUser(res);
-      if(redirect){
-        history.replace(from);
-      }
-      
-  }
-    const handleBlur = (event)=>{
-    console.log(event.target.name,event.target.value);
-    let isFieldValid = true;
-    if(event.target.name === 'email'){
-      
-      // eslint-disable-next-line no-unused-vars
-      isFieldValid = /\S+@\S+\.\S+/.test(event.target.value);
-      
-    }
-
-    if (event.target.name === 'password'){
-        const isPasswordValid = event.target.value.length > 6;
-        const passwordHasNumber = /\d{1}/.test(event.target.value);
-        isFieldValid = isPasswordValid && passwordHasNumber;
-    }
-
-    if(isFieldValid){
-        const newUserInfo = {...user};
-        newUserInfo[event.target.name] = event.target.value;
-        setUser(newUserInfo);
-    }
-
-    }
-    const handleSubmit = (e)=>{
-      console.log(user.email,user.password)
-      if(newUser && user.email && user.password){
-        createUserWithEmailAndPassword(user.name,user.email,user.password)
-        .then(res=>{
-          handleResponse(res, true);
-        })
-      }
-
-      if(!newUser && user.email && user.password){
-        signInWithEmailAndPassword(user.email,user.password)
-        .then(res=>{
-          handleResponse(res, true);
-        })
-      }
-      e.preventDefault();
-    }
+    
 
     return (
         <div className="vh-100">
   <div className="container-fluid h-custom">
     <div className="row d-flex justify-content-center align-items-center h-100">
+
+      {
+        user.isSignedIn && <div>
+        <p>Welcome, {user.name}! You can login here only with google now.</p>
+        <p>Your email: {user.email}</p>
+        <img src={user.photo} alt=""/>
+      </div>
+      }
       <div className="col-md-9 col-lg-6 col-xl-5">
           
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" className="img-fluid"
@@ -104,9 +72,13 @@ const Login = () => {
         <form>
           <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
             <p className="lead fw-normal mb-0 me-3">Sign in with</p>
-            <button type="button" className="btn btn-warning btn-floating mx-1">
-            <FontAwesomeIcon icon={faGoogle} /> Google
-            </button>
+            {
+
+              user.isSignedIn ? <Button className="btn-warning" onClick={googleSignOut} >Sign Out from Google</Button>:
+              <Button className="btn-warning" onClick={googleSignIn} ><FontAwesomeIcon icon={faGoogle} /> Sign In with Google</Button>
+
+            }
+            
 
             <button type="button" className="btn btn-primary btn-floating mx-1">
             <FontAwesomeIcon icon={faFacebook} /> Facebook
