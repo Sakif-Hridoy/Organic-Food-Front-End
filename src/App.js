@@ -4,7 +4,7 @@ import '../node_modules/bootstrap-4-react/dist/bootstrap-4-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-import React from "react";
+import React, { createContext, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,8 +19,11 @@ import Login from './components/Login/Login';
 import Header from './components/Header/Header';
 
 
+export const UserContext = createContext();
 export default function App() {
+  const  [loggedInUser,setLoggedInUser]=useState({});
   return (
+    <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
     <Router>
       <Header></Header>
       <div>
@@ -47,5 +50,6 @@ export default function App() {
         </Switch>
       </div>
     </Router>
+    </UserContext.Provider>
   );
 }

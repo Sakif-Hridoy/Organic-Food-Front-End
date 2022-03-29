@@ -1,10 +1,95 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { useHistory, useLocation } from 'react-router';
+import { createUserWithEmailAndPassword, handleGoogleSignIn, handleGoogleSignOut, initializeLoginFramework, signInWithEmailAndPassword } from './LoginManager';
+
 
 const Login = () => {
+  
+  const [newUser,setNewUser]=useState(false);
+
+
+  const[user,setUser]= useState({
+    isSignedIn: false,
+    name:'',
+    email:'',
+    password:'',
+    photo:'',
+    error:''
+  });
+  initializeLoginFramework();
+  const [loggedInUser,setLoggedInUser] = useContext(UserContext);
+  const history = useHistory();
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
+
+ 
+  const googleSignIn = ()=>{
+    handleGoogleSignIn()
+    .then(res=>{
+      handleResponse(res, true);
+    })
+  }
+
+  const googleSignOut = ()=>{
+    handleGoogleSignOut()
+    .then(res=>{
+      handleResponse(res, false);
+    })
+  }
+
+  const handleResponse = (res,redirect)=>{
+      setUser(res);
+      setLoggedInUser(res);
+      if(redirect){
+        history.replace(from);
+      }
+      
+  }
+    const handleBlur = (event)=>{
+    console.log(event.target.name,event.target.value);
+    let isFieldValid = true;
+    if(event.target.name === 'email'){
+      
+      // eslint-disable-next-line no-unused-vars
+      isFieldValid = /\S+@\S+\.\S+/.test(event.target.value);
+      
+    }
+
+    if (event.target.name === 'password'){
+        const isPasswordValid = event.target.value.length > 6;
+        const passwordHasNumber = /\d{1}/.test(event.target.value);
+        isFieldValid = isPasswordValid && passwordHasNumber;
+    }
+
+    if(isFieldValid){
+        const newUserInfo = {...user};
+        newUserInfo[event.target.name] = event.target.value;
+        setUser(newUserInfo);
+    }
+
+    }
+    const handleSubmit = (e)=>{
+      console.log(user.email,user.password)
+      if(newUser && user.email && user.password){
+        createUserWithEmailAndPassword(user.name,user.email,user.password)
+        .then(res=>{
+          handleResponse(res, true);
+        })
+      }
+
+      if(!newUser && user.email && user.password){
+        signInWithEmailAndPassword(user.email,user.password)
+        .then(res=>{
+          handleResponse(res, true);
+        })
+      }
+      e.preventDefault();
+    }
+
     return (
         <div className="vh-100">
   <div className="container-fluid h-custom">
