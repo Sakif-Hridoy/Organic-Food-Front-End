@@ -1,72 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Admin.css';
-import { Link } from 'react-router-dom';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { UserContext } from '../../App';
+import AdminHeader from '../AdminHeader/AdminHeader';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import ManageProduct from '../ManageProduct/ManageProduct';
+import AddProduct from '../AddProduct/AddProduct';
+import EditProduct from '../EditProduct/EditProduct';
 
 const Admin = () => {
+	const  [loggedInUser,setLoggedInUser]=useState({});
     return (
-        <div className="wrapper">
+		
+		<UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
+			<div class="wrapper">
+		<Router>
+			<div id="sidebar">
+			<AdminHeader></AdminHeader>
+			</div>
+		  
+		  
+			  {/* A <Switch> looks through its children <Route>s and
+				renders the first one that matches the current URL. */}
+			<Switch>
+
+				<Route path="/editProduct">
+					<EditProduct></EditProduct>
+				</Route>
+
+				<Route path="/addProduct">
+					<AddProduct></AddProduct>
+				</Route>
+
+			<Route path="/">
+				<ManageProduct></ManageProduct>
+			  </Route>
 	
- <nav id="sidebar">
- 	
- 	 <div className="sidebar-header">
- 	 	<h3></h3>
- 	 </div>
- 	 <ul className="lisst-unstyled components">
-
- 	 	<p>Organic Food</p>
- 	 	<li>
- 	 		<Link to="/manageProduct" href="#">Manage Product</Link>
- 	 	</li>
- 	 	<li>
- 	 		<Link to="/addProduct" href="#">Add Product</Link>
- 	 	</li>
- 	 	<li>
- 	 		<Link href="/editProduct" >Edit Product</Link>
- 	 	</li>
-
- 	 	 	 	
-
- 	 </ul>
- </nav>
-
-
-<div id="content">
-	
-
-<br />
-    
-
-<form className='d-flex'>
-  <div class="form-group form-margin">
-    <label htmlfor="exampleInputEmail1">Product Name</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Name" />
-  </div>
-  <div class="form-group">
-    <label htmlfor="exampleInputPassword1">Add Price</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Add Price" />
-  </div>
-
-</form>
-
-<form className='d-flex'>
-  <div class="form-group form-margin">
-    <label htmlfor="exampleInputEmail1">Product Quantity</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Product Quantity" />
-  
-  </div>
-
-  
-  <button type="submit" class="btn btn-primary button2">Upload Image</button>
-</form>
-
-<form action="">
-<button type="submit" class="btn btn-success button2">Save</button>
-</form>
-
-</div>
-
-
-</div>
+		
+			</Switch>
+		  
+		</Router>
+		</div>
+		</UserContext.Provider>
+		
     );
 };
 
