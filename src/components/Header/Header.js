@@ -7,7 +7,7 @@ import './Header.css';
 import { useHistory } from 'react-router';
 const Header = () => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
-  const history = useHistory();
+  
  
     return (
         <>
