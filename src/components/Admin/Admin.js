@@ -1,5 +1,6 @@
 import React from 'react';
-import './Admin.css'
+import './Admin.css';
+import { Link } from 'react-router-dom';
 
 const Admin = () => {
     return (
@@ -7,48 +8,23 @@ const Admin = () => {
 	
  <nav id="sidebar">
  	
- 	 <div class="sidebar-header">
- 	 	<h3>Bootstrap Slider</h3>
+ 	 <div className="sidebar-header">
+ 	 	<h3></h3>
  	 </div>
- 	 <ul class="lisst-unstyled components">
+ 	 <ul className="lisst-unstyled components">
 
- 	 	<p>The Providers</p>
- 	 	<li class="active">
- 	 		<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
- 	 	  <ul class="collapse list-unstyled" id="homeSubmenu">
- 	 	  	<li>
- 	 	  		<a href="#">Home 1</a>
- 	 	  	</li>
- 	 	  	<li>
- 	 	  		<a href="#">Home 2</a>
- 	 	  	</li>
-
- 	 	  </ul>
+ 	 	<p>Organic Food</p>
+ 	 	<li>
+ 	 		<Link to="/manageProduct" href="#">Manage Product</Link>
  	 	</li>
  	 	<li>
- 	 		<a href="#">About</a>
+ 	 		<Link to="/addProduct" href="#">Add Product</Link>
  	 	</li>
  	 	<li>
- 	 		<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
- 	 		<ul class="collapse list-unstyled" id="pageSubmenu">
- 	 			<li>
- 	 				<a href="#">Page 1</a>
- 	 			</li>
- 	 			<li>
- 	 				<a href="#">Page 2</a>
- 	 			</li>
- 	 			
-
- 	 		</ul>
+ 	 		<Link href="/editProduct" >Edit Product</Link>
  	 	</li>
 
- 	 	 	 	<li>
- 	 				<a href="#">Policy</a>
- 	 			</li>
-
-         <li>
- 	 				<a href="#">Contact Us</a>
- 	 			</li>
+ 	 	 	 	
 
  	 </ul>
  </nav>
@@ -58,30 +34,34 @@ const Admin = () => {
 	
 
 <br />
-    <h2>Collapseible Sidebar using Bootstrap 4</h2>
-    <p>
-    	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-    	
-    </p>
-     <p>
-    	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-    	
-    </p>
+    
 
-  <div class="line"></div>
-  <h3>Lorem Ipsum</h3>
+<form className='d-flex'>
+  <div class="form-group form-margin">
+    <label htmlfor="exampleInputEmail1">Product Name</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Name" />
+  </div>
+  <div class="form-group">
+    <label htmlfor="exampleInputPassword1">Add Price</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Add Price" />
+  </div>
 
-   <p>
-    	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-    	
-    </p>
+</form>
 
+<form className='d-flex'>
+  <div class="form-group form-margin">
+    <label htmlfor="exampleInputEmail1">Product Quantity</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Product Quantity" />
+  
+  </div>
 
+  
+  <button type="submit" class="btn btn-primary button2">Upload Image</button>
+</form>
 
-
-
-
-
+<form action="">
+<button type="submit" class="btn btn-success button2">Save</button>
+</form>
 
 </div>
 
