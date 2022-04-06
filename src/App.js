@@ -44,6 +44,11 @@ export default function App() {
         <PrivateRoute path="/orders">
         <Orders />
           </PrivateRoute> 
+
+          <Route path="/home">
+            <Home />
+          </Route>
+
           <Route path="/">
             <Home />
           </Route>
