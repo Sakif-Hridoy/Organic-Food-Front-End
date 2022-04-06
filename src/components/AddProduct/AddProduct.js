@@ -5,26 +5,26 @@ import { Link } from 'react-router-dom';
 import './AddProduct.css';
 const AddProduct = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const [imageURL,setImageURL] = useState()
+  const [imageURL,setImageURL]= useState();
   const onSubmit = data => {
     const eventData = {
-      name:data.example,
-      imageURL:imageURL
-    };
+      name:data.name,
+      price:data.price,
+      imageURL:imageURL,
+    }
 
-    const url =  `http://localhost:6060/addProduct`
-        console.log(eventData)
-        fetch(url,{
-          method:'POST',
-          headers:{
-            'content-type':'application/json'
-          },
-          body:JSON.stringify(eventData)
-        })
-        .then(res=>console.log('server side response',res))
+    const url = `http://localhost:4545/addProduct`
+    console.log(eventData)
+    fetch(url,{
+      method:'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body:JSON.stringify(eventData)
+    })
+    .then(res=>console.log('server side response',res))
   
-  } ;
-
+  };
   const handleImageUpload = event =>{
     console.log(event.target.files[0])
     const imageData = new FormData();
@@ -39,24 +39,21 @@ const AddProduct = () => {
       console.log(error);
     });
   }
+
+
     return (
 
 
         <div id='content'>
-            <form onSubmit={handleSubmit(onSubmit)} class="form-display">
-  <div class="form-group form-margin">
-   
-    <input name="name" defaultValue="Enter Product Name" {...register("example")} class="form-control" required />
-    {errors.exampleRequired && <span>This field is required</span>}
-  </div>
-  <div class="form-group form-margin">
-    <input type="file" onChange={handleImageUpload} required />
-    {errors.exampleRequired && <span>This field is required</span>}
-  </div>
-  {/* <button type="submit" class="btn btn-primary button1">Upload Image</button> */}
-  <input type="submit" class="btn btn-primary button2" />
-</form>
+          <form onSubmit={handleSubmit(onSubmit)}>
+             <input defaultValue="Enter Product Name" {...register("name")} required />
 
+             <input type="number" defaultValue="Enter Product Price" {...register("price")} required />
+
+             <input type="file"  onChange={handleImageUpload}/>
+             
+             <input type="submit" />
+             </form>
         </div>
 
 
