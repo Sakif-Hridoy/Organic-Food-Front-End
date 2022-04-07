@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Products from '../Products/Products';
+import './Home.css';
 
 const Home = () => {
-    return (
-        <div class="container">
-            <div class="row">
+    const [products,setProducts] = useState([])
 
-                <div class="offset-md-4 col-md-3 text-center">
-                        
+
+    useEffect(()=>{
+        fetch('http://localhost:4545/products')
+        .then(res=>res.json())
+        .then(data=>setProducts(data))
+    },[])
+    return (
+       
+            
+
+                <div class="container">
+                    <div class="row">
+                {
+                products.map(product=><Products product={product}></Products>)
+            }
+            </div>
                 </div>
                
                 
 
 
-            </div>
             
-        </div>
+            
+       
     );
 };
 
