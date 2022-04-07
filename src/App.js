@@ -14,6 +14,7 @@ import Deals from './components/Deals/Deals';
 import Login from './components/Login/Login';
 import Header from './components/Header/Header';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Checkout from './components/Checkout/Checkout';
 
 export const UserContext = createContext();
 export default function App() {
@@ -41,9 +42,17 @@ export default function App() {
         {/* <PrivateRoute path="/admin">
         <Admin />
           </PrivateRoute>     */}
-        <PrivateRoute path="/orders">
+        {/* <PrivateRoute path="/orders">
         <Orders />
-          </PrivateRoute> 
+          </PrivateRoute>  */}
+
+          <Route path="/orders">
+          <Orders />
+          </Route>
+
+          <Route path="/name/:name">
+            <Checkout></Checkout>
+          </Route>
 
           <Route path="/home">
             <Home />
