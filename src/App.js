@@ -23,10 +23,19 @@ export default function App() {
     <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
     <Router>
       <Header></Header>
-      <div>
+      
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+
+        <Route exact path="/">
+            <Home />
+          </Route>
+
+        <Route path="/home">
+            <Home />
+          </Route>
+
         <Route path="/login">
             <Login />
           </Route>
@@ -35,34 +44,30 @@ export default function App() {
             <Deals />
           </Route>
 
-            <Route path="/admin">
+            {/* <Route path="/admin">
             <Admin></Admin>
-            </Route>
+            </Route> */}
 
-        {/* <PrivateRoute path="/admin">
+        <PrivateRoute path="/admin">
         <Admin />
-          </PrivateRoute>     */}
-        {/* <PrivateRoute path="/orders">
+          </PrivateRoute>    
+        <PrivateRoute path="/orders">
         <Orders />
-          </PrivateRoute>  */}
+          </PrivateRoute> 
 
-          <Route path="/orders">
+          {/* <Route path="/orders">
           <Orders />
-          </Route>
-
-          <Route path="/name/:name">
+          </Route> */}
+          
+          <Route path="/checkout/:name">
             <Checkout></Checkout>
           </Route>
 
-          <Route path="/home">
-            <Home />
-          </Route>
+          
 
-          <Route path="/">
-            <Home />
-          </Route>
+          
         </Switch>
-      </div>
+      
     </Router>
     </UserContext.Provider>
   );

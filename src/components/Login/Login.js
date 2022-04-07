@@ -23,8 +23,8 @@ const Login = () => {
   initializeLoginFramework();
 
   const [loggedInUser, setLoggedInUser ] = useContext(UserContext);
-  const history = useHistory();
-  const location = useLocation();
+  let history = useHistory();
+  let location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
 
   const googleSignIn = (event) => {
@@ -46,6 +46,7 @@ const Login = () => {
   const handleResponse = (res) =>{
     setUser(res);
     setLoggedInUser(res);
+    history.replace(from);
     
   }
 
