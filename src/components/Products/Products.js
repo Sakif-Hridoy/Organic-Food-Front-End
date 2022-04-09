@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Product.css';
 
 const Products = ({product}) => {
-    console.log()
+    console.log(product)
     const {name,imageURL,price} = product || {}
     return (
         <div class="" >
@@ -12,7 +12,7 @@ const Products = ({product}) => {
             <h4 class="content">{name}</h4>
 
             <Link to={`/products/${name}`} class="btn btn-success">Buy Now</Link>
-            <h4 class="content">Price: {price}</h4>
+            <h4 class="content">Price: {price}$</h4>
             </div>
         </div>
     );
