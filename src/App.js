@@ -59,7 +59,7 @@ export default function App() {
           <Orders />
           </Route> */}
           
-          <Route path="/checkout/:name">
+          <Route path="/products/:name">
             <Checkout></Checkout>
           </Route>
 

@@ -75,12 +75,12 @@ const Login = () => {
         <form>
           <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
            
-            {
+          {
 
-              user.isSignedIn ? <Button className="btn-warning" onClick={googleSignOut} >Sign Out from Google</Button>:
-              <Button className="btn-warning" onClick={googleSignIn} ><FontAwesomeIcon icon={faGoogle} /> Sign In with Google</Button>
+user.isSignedIn ? <Button className="btn-warning" onClick={googleSignOut} >Sign Out from Google</Button>:
+<Button className="btn-warning" onClick={googleSignIn} ><FontAwesomeIcon icon={faGoogle} /> Sign In with Google</Button>
 
-            }
+}
             
 
             <button type="button" className="btn btn-primary btn-floating mx-1">

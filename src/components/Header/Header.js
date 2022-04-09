@@ -14,14 +14,14 @@ const Header = () => {
     <Navbar bg="light" variant="light">
     <Container>
     <Navbar.Brand>Organic Food<Nav.Link to="/home"></Nav.Link></Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="/home">Home</Nav.Link>
-      <Nav.Link  href="/orders">Orders</Nav.Link>
-      <Nav.Link href="/admin">Admin</Nav.Link>
-      <Nav.Link  href="/deals">Deals</Nav.Link>
-      <Nav.Link  href="/login" className="btn btn-success btn-sm">
+    <Nav class="me-auto">
+      <Link to="/home">Home</Link>
+      <Link   to="/orders">Orders</Link>
+      <Link  to="/admin">Admin</Link>
+      <Link   to="/deals">Deals</Link>
+      <Link   to="/login" class="btn btn-success btn-sm text-center">
       {loggedInUser.email ? loggedInUser.name || loggedInUser.displayName: "Log In"}
-      </Nav.Link>
+      </Link>
     </Nav>
     </Container>
   </Navbar>

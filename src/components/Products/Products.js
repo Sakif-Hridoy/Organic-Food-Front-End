@@ -11,7 +11,7 @@ const Products = ({product}) => {
             <img class="content" style={{height:'300px'}} src={imageURL} alt=""/>
             <h4 class="content">{name}</h4>
 
-            <Link to={`/checkout/${name}`} class="btn btn-success">Buy Now</Link>
+            <Link to={`/products/${name}`} class="btn btn-success">Buy Now</Link>
             <h4 class="content">Price: {price}</h4>
             </div>
         </div>
