@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Product.css';
 
 const Products = ({product}) => {
-    console.log(product)
+    // console.log(product)
     const {name,imageURL,price} = product || {}
     return (
         <div class="" >

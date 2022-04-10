@@ -16,8 +16,8 @@ const Orders = () => {
     })
     return (
         <div>
-            <h2>Your Orders</h2>
-            <h3>User Name: {loggedInUser.name}</h3>
+            <h2 class="text-center">Your Orders</h2>
+            <h3 class="text-center">User Name: {loggedInUser.name}</h3>
 
             <table class="table w-75 m-auto table-dark">
   <thead>

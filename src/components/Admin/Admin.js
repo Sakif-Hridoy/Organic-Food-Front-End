@@ -13,6 +13,7 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import ManageProduct from '../ManageProduct/ManageProduct';
 import AddProduct from '../AddProduct/AddProduct';
 import EditProduct from '../EditProduct/EditProduct';
+import Manage from '../Manage/Manage';
 
 const Admin = () => {
 	const  [loggedInUser,setLoggedInUser]=useState({});
@@ -39,7 +40,7 @@ const Admin = () => {
 				</Route>
 
 			<Route path="/">
-				<ManageProduct></ManageProduct>
+				<Manage></Manage>
 			  </Route>
 	
 		

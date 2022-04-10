@@ -8,10 +8,10 @@ const OrderedProduct = (props) => {
             <table class="table w-75 m-auto table-dark">
              <tbody>
     <tr>
-     
-      <td>{name}</td>
-      <td>{price}</td>
-      <td>{newDate}</td>
+    <th scope="row">{name}</th>
+    <th scope="row">{price}</th>
+    <th scope="row">{newDate}</th>
+      
     </tr>
     </tbody>
     </table>
