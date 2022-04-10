@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../App';
+import OrderedProduct from '../OrderedProduct/OrderedProduct';
 
 const Orders = () => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
     const [orders,setOrders] = useState([]);
     const email = loggedInUser.email;
-    console.log(loggedInUser,orders,loggedInUser.email);
+    // console.log(loggedInUser,orders,loggedInUser.email);
 
     useEffect(()=>{
         fetch(`http://localhost:4545/orders?${email}`,{
@@ -18,7 +19,7 @@ const Orders = () => {
             <h2>Your Orders</h2>
             <h3>User Name: {loggedInUser.name}</h3>
 
-            <table class="table table-dark">
+            <table class="table w-75 m-auto table-dark">
   <thead>
     <tr>
       <th scope="col">Product Name</th>
@@ -27,7 +28,9 @@ const Orders = () => {
     </tr>
   </thead>
 </table>
-
+{
+    orders.map(order=><OrderedProduct order={order}></OrderedProduct>)
+}
 
         </div>
     );
