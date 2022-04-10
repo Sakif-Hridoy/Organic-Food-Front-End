@@ -50,7 +50,8 @@ export default function App() {
 
         <PrivateRoute path="/admin">
         <Admin />
-          </PrivateRoute>    
+          </PrivateRoute>  
+            
         <PrivateRoute path="/orders">
         <Orders />
           </PrivateRoute> 
