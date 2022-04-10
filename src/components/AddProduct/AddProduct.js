@@ -13,7 +13,7 @@ const AddProduct = () => {
       imageURL:imageURL,
     }
 
-    const url = `http://localhost:4545/addProduct`
+    const url = `https://gentle-hollows-84272.herokuapp.com/addProduct`
     console.log(eventData)
     fetch(url,{
       method:'POST',

@@ -4,7 +4,7 @@ import ManageProduct from '../ManageProduct/ManageProduct';
 const Manage = () => {
     const[manage,setManage] = useState([]);
     useEffect(()=>{
-        const url =   `http://localhost:4545/products`
+        const url =   `https://gentle-hollows-84272.herokuapp.com/products`
         fetch(url)
         .then(res=>res.json())
         .then(data=>setManage(data))

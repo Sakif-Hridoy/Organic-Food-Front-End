@@ -7,7 +7,7 @@ const Home = () => {
 
 
     useEffect(()=>{
-        fetch('http://localhost:4545/products')
+        fetch('https://gentle-hollows-84272.herokuapp.com/products')
         .then(res=>res.json())
         .then(data=>setProducts(data))
     },[])

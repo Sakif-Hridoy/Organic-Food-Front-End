@@ -9,7 +9,7 @@ const Checkout = (props) => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext);
 
     useEffect(()=>{
-        fetch('http://localhost:4545/products/' + name)
+        fetch('https://gentle-hollows-84272.herokuapp.com/products/' + name)
         .then(res=>res.json())
     .then(data => setCheckOut(data[0]))
     },[name])
@@ -20,7 +20,7 @@ const Checkout = (props) => {
     const handleCheckout = ()=>{
         const newOrder = {...checkOut, newDate: new Date()};
 
-        fetch('http://localhost:4545/addOrder',{
+        fetch('https://gentle-hollows-84272.herokuapp.com/addOrder',{
             method:"POST",
             headers: {
                 'Content-Type':'application/json'

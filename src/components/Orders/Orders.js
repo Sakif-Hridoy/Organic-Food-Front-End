@@ -9,7 +9,7 @@ const Orders = () => {
     // console.log(loggedInUser,orders,loggedInUser.email);
 
     useEffect(()=>{
-        fetch(`http://localhost:4545/orders?${email}`,{
+        fetch(`https://gentle-hollows-84272.herokuapp.com/orders?${email}`,{
 
         }).then(res=>res.json())
         .then(data=>setOrders(data))
